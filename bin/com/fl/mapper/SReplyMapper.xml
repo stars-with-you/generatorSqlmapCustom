@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fl.mapper.SReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.fl.model.SReply" >
+    <result column="rid" property="rid" jdbcType="VARCHAR" />
+    <result column="pguid" property="pguid" jdbcType="VARCHAR" />
+    <result column="displayname" property="displayname" jdbcType="NVARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="NVARCHAR" />
+    <result column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="qid" property="qid" jdbcType="VARCHAR" />
+    <result column="atext" property="atext" jdbcType="NVARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rid, pguid, displayname, openid, tel, company, sid, qid, atext, createtime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fl.model.SReplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from s_reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.fl.model.SReplyExample" >
+    delete from s_reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fl.model.SReply" >
+    insert into s_reply (rid, pguid, displayname, 
+      openid, tel, company, 
+      sid, qid, atext, createtime
+      )
+    values (#{rid,jdbcType=VARCHAR}, #{pguid,jdbcType=VARCHAR}, #{displayname,jdbcType=NVARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{company,jdbcType=NVARCHAR}, 
+      #{sid,jdbcType=VARCHAR}, #{qid,jdbcType=VARCHAR}, #{atext,jdbcType=NVARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fl.model.SReply" >
+    insert into s_reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="pguid != null" >
+        pguid,
+      </if>
+      <if test="displayname != null" >
+        displayname,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="qid != null" >
+        qid,
+      </if>
+      <if test="atext != null" >
+        atext,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=VARCHAR},
+      </if>
+      <if test="pguid != null" >
+        #{pguid,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        #{displayname,jdbcType=NVARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=NVARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="qid != null" >
+        #{qid,jdbcType=VARCHAR},
+      </if>
+      <if test="atext != null" >
+        #{atext,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fl.model.SReplyExample" resultType="java.lang.Integer" >
+    select count(*) from s_reply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update s_reply
+    <set >
+      <if test="record.rid != null" >
+        rid = #{record.rid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pguid != null" >
+        pguid = #{record.pguid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.displayname != null" >
+        displayname = #{record.displayname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.company != null" >
+        company = #{record.company,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qid != null" >
+        qid = #{record.qid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.atext != null" >
+        atext = #{record.atext,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update s_reply
+    set rid = #{record.rid,jdbcType=VARCHAR},
+      pguid = #{record.pguid,jdbcType=VARCHAR},
+      displayname = #{record.displayname,jdbcType=NVARCHAR},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      company = #{record.company,jdbcType=NVARCHAR},
+      sid = #{record.sid,jdbcType=VARCHAR},
+      qid = #{record.qid,jdbcType=VARCHAR},
+      atext = #{record.atext,jdbcType=NVARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
